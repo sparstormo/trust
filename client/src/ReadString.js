@@ -7,8 +7,12 @@ class ReadString extends React.Component {
     const { drizzle } = this.props;
     const contract = drizzle.contracts.Trust;
 
-    // let drizzle know we want to watch the `myString` method
-    const dataKey = contract.methods["payment"].cacheCall();
+    console.log(contract);
+
+    // let drizzle know we want to watch the `balance` method
+    const dataKey = contract.methods["balance"].cacheCall();
+
+    console.log(dataKey);
 
     // save the `dataKey` to local component state for later reference
     this.setState({ dataKey });
@@ -19,10 +23,12 @@ class ReadString extends React.Component {
     const { Trust } = this.props.drizzleState.contracts;
 
     // using the saved `dataKey`, get the variable we're interested in
-    const payment = Trust.payment[this.state.dataKey];
+    console.log(this.state.dataKey);
+    const balance = Trust.balance[this.state.dataKey];
 
     // if it exists, then we display its value
-    return <p>My stored string: {payment && payment.value}</p>;
+    return <p>My trust balance: {balance && balance.value}</p>;
+    //return null;
   }
 }
 

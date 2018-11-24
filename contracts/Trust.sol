@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 
 contract Trust {
 
-    uint private amount;
+    uint amount;
     address owner;
     uint timeInterval = now;
     uint payment = 0;
