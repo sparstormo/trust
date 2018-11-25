@@ -1,7 +1,10 @@
 import React from "react";
 
 class ReadString extends React.Component {
-  state = { dataKey: null };
+   state = {
+     balanceKey: null,
+     installmentKey: null,
+   };
 
   componentDidMount() {
     const { drizzle } = this.props;
@@ -10,24 +13,38 @@ class ReadString extends React.Component {
     console.log(contract);
 
     // let drizzle know we want to watch the `balance` method
-    const dataKey = contract.methods["balance"].cacheCall();
+    const balanceKey = contract.methods["balance"].cacheCall();
+    const installmentKey = contract.methods["payment"].cacheCall();
 
-    console.log(dataKey);
+    console.log(balanceKey, installmentKey);
 
-    // save the `dataKey` to local component state for later reference
-    this.setState({ dataKey });
+    // save the `balanceKey` to local component state for later reference
+    this.setState({
+      balanceKey: balanceKey,
+      installmentKey: installmentKey
+    });
   }
 
   render() {
     // get the contract state from drizzleState
     const { Trust } = this.props.drizzleState.contracts;
 
-    // using the saved `dataKey`, get the variable we're interested in
-    console.log(this.state.dataKey);
-    const balance = Trust.balance[this.state.dataKey];
+    // using the saved `balanceKey`, get the variable we're interested in
+    console.log(this.state.balanceKey, this.state.installmentKey);
+    console.log(Trust);
+    const balance = Trust.balance[this.state.balanceKey];
+    const payment = Trust.payment[this.state.installmentKey];
+
+    //const installment = Trust.payment
 
     // if it exists, then we display its value
-    return <p>My trust balance: {balance && balance.value}</p>;
+    return(
+      <div>
+        <p>My trust balance: {balance && balance.value}</p>
+        <p>My trust payment: {payment && payment.value}</p>
+      </div>
+    )
+
     //return null;
   }
 }

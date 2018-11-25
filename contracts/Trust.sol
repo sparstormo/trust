@@ -5,7 +5,7 @@ contract Trust {
     uint amount;
     address owner;
     uint timeInterval = now;
-    uint payment = 0;
+    uint public payment = 0;
 
     modifier onlyOwner {
         require(owner == msg.sender);

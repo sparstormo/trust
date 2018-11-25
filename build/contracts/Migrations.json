@@ -1408,10 +1408,10 @@
     "1542921373738": {
       "events": {},
       "links": {},
-      "address": "0xa8640968219fd5d9824045ecc433360c3285ff46",
-      "transactionHash": "0xe304a94f0ef117781e15249dcab592f3dda6804d1ffda42cc170fd556ba70b22"
+      "address": "0x60c4dd3f3e35a58c153f6057ce5ba15463478993",
+      "transactionHash": "0x85c8e982d36fcf11f585817e2d234ad6fd11e7d3dcf249933ce12c784ca55233"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-11-23T21:32:21.282Z"
+  "updatedAt": "2018-11-25T00:20:36.549Z"
 }
