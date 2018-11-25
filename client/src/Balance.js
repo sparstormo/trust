@@ -3,7 +3,8 @@ import React from "react";
 class ReadString extends React.Component {
    state = {
      balanceKey: null,
-     installmentKey: null,
+     paymentKey: null,
+     amountKey: null,
    };
 
   componentDidMount() {
@@ -14,14 +15,17 @@ class ReadString extends React.Component {
 
     // let drizzle know we want to watch the `balance` method
     const balanceKey = contract.methods["balance"].cacheCall();
-    const installmentKey = contract.methods["payment"].cacheCall();
+    const paymentKey = contract.methods["payment"].cacheCall();
+    const amountKey = contract.methods["amount"].cacheCall();
 
-    console.log(balanceKey, installmentKey);
+
+    console.log(balanceKey, paymentKey, amountKey);
 
     // save the `balanceKey` to local component state for later reference
     this.setState({
       balanceKey: balanceKey,
-      installmentKey: installmentKey
+      installmentKey: paymentKey,
+      amountKey: amountKey
     });
   }
 
@@ -33,15 +37,17 @@ class ReadString extends React.Component {
     console.log(this.state.balanceKey, this.state.installmentKey);
     console.log(Trust);
     const balance = Trust.balance[this.state.balanceKey];
-    const payment = Trust.payment[this.state.installmentKey];
+    const payment = Trust.payment[this.state.paymentKey];
+    const amount = Trust.amount[this.state.amountKey];
 
-    //const installment = Trust.payment
 
     // if it exists, then we display its value
     return(
       <div>
         <p>My trust balance: {balance && balance.value}</p>
         <p>My trust payment: {payment && payment.value}</p>
+        <p>My trust initial amount: {amount && amount.value}</p>
+
       </div>
     )
 

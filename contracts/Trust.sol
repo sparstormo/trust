@@ -2,10 +2,10 @@ pragma solidity ^0.4.24;
 
 contract Trust {
 
-    uint amount;
+    uint public amount = 120;
     address owner;
     uint timeInterval = now;
-    uint public payment = 0;
+    uint public payment;
 
     modifier onlyOwner {
         require(owner == msg.sender);
@@ -18,7 +18,7 @@ contract Trust {
         _;
     }
 
-    constructor () public payable {
+    function initialAmount() public payable {
         owner = msg.sender;
         amount = msg.value;
         payment = amount / 10;
